@@ -12,7 +12,7 @@ function UserList() {
     <FlatList
       style={{
         backgroundColor: "#EEEEEE",
-        padding: "3px",
+        // padding: "3px", // This padding borks the application
       }}
       data={users}
       renderItem={UserCard}
