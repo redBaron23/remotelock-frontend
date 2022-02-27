@@ -1,14 +1,15 @@
 class ObjectUtils {
-    // convert an object keys from snake case to camel case (thanks to copilot ❤️)
-    public static toCamelCase(obj: any): any {
-        let newObj = {};
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                let newKey = key.replace(/(_\w)/g, (m) => m[1].toUpperCase());
-                newObj[newKey] = obj[key];
-            }
-        }
-        return newObj;
+    // convert an object or array keys from snake case to camel case recursively
+    public toCamelCase<T>(obj: T | T[]): T | T[] {
+        const snakeCaseString = JSON.stringify(obj);
+
+        const camelCaseString = snakeCaseString.replace(/([-_][a-z])/ig, ($1) => {
+            return $1.toUpperCase()
+                .replace('-', '')
+                .replace('_', '');
+        });
+
+        return JSON.parse(camelCaseString);
     }
 }
 
