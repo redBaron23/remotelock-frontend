@@ -35,6 +35,10 @@ function DeviceList(props: Props) {
     if (props.devices.length === 0) {
       props.getDevices();
     }
+
+    return() => {
+      props.filterDeviceByName("");
+    };
   }, []);
 
   const handleOnSearch = (value: any) => {

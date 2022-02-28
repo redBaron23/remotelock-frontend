@@ -77,12 +77,10 @@ const updateDevice = (device: Device) => {
 
 const filterDeviceByName = (deviceName: string) => {
     return (dispatch: any) => {
-        dispatch(fetchDevicesRequest);
-
-        fetchFilterDeviceByName(deviceName)
-            .then((res) => ObjectUtils.toCamelCase(res.data))
-            .then((devices) => dispatch(fetchDevicesSuccess(devices)))
-            .catch(dispatch(fetchDevicesFailure));
+        dispatch({
+            type: ClientTypes.FILTER_DEVICE_BY_NAME,
+            payload: deviceName
+        });
     }
 }
 

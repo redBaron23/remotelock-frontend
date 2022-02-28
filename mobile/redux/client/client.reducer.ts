@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     error: null,
     devices: [],
     users: [],
+    allDevices: [],
 };
 
 const reducer = (state: any = INITIAL_STATE, action: any) => {
@@ -23,7 +24,7 @@ const reducer = (state: any = INITIAL_STATE, action: any) => {
             }
         case ClientTypes.FETCH_DEVICS_SUCCESS:
             return {
-                ...state, isLoadingDevices: false, devices: action.payload
+                ...state, isLoadingDevices: false, devices: action.payload, allDevices: action.payload
             }
         case ClientTypes.FETCH_USERS_REQUEST:
             return {
@@ -38,17 +39,20 @@ const reducer = (state: any = INITIAL_STATE, action: any) => {
                 ...state, isLoadingUsers: false, users: action.payload
             }
         case ClientTypes.UPDATE_DEVICE:
+            const currentDevices = state.devices.map((device: Device) => {
+                if (device.id === action.payload.id) {
+                    return action.payload;
+                }
+                return device;
+            })
             return {
-                ...state, devices: state.devices.map((device: Device) => {
-                    if (device.id === action.payload.id) {
-                        return action.payload;
-                    }
-                    return device;
-                })
+                ...state, devices: currentDevices, allDevices: currentDevices
             }
         case ClientTypes.FILTER_DEVICE_BY_NAME:
             return {
-                ...state, isLoadingDevices: false, devices: action.payload
+                ...state, isLoadingDevices: false, devices: state.allDevices.filter((device: Device) => {
+                    return device.attributes.name.toLowerCase().includes(action.payload.toLowerCase());
+                })
             }
         default:
             return state;
