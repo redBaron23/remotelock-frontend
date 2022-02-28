@@ -8,15 +8,23 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "moment-timezone": "^0.5.34",
+    "or": "^0.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-platform-searchbar": "^1.2.3",
+    "react-native-svg": "12.1.1",
     "react-native-switch-selector": "^2.1.4",
     "react-native-web": "~0.13.12",
-    "styled-components": "^5.3.3"
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
+    "styled-components": "^5.3.3",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
