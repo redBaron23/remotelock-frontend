@@ -7,4 +7,5 @@ export default interface ClientType {
     error: string;
     devices: Array<Device>;
     users: Array<Person>;
+    allDevices: Array<Device>;
 }

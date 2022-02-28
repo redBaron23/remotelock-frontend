@@ -17,6 +17,7 @@ interface OwnProps {}
 
 interface ConnectedProps {
   devices: Lock[];
+  allDevices: Lock[];
 }
 
 interface DispatchProps {
@@ -29,32 +30,31 @@ type Props = OwnProps & ConnectedProps & DispatchProps;
 
 function DeviceList(props: Props) {
   const [searchValue, setSearchValue] = useState("");
-  const [filteredDevices, setFilteredDevices] = useState<Device[]>([]);
 
   useEffect(() => {
     if (props.devices.length === 0) {
       props.getDevices();
     }
-
-    return() => {
-      props.filterDeviceByName("");
-    };
   }, []);
 
   const handleOnSearch = (value: any) => {
     setSearchValue(value);
     props.filterDeviceByName(value);
-  }
+  };
 
   return (
     <>
       <SearchContainer>
-        <AntDesign name="search1" size={12} color="black"/>
-        <SearchBar placeholder="Search by name" value={searchValue} onChangeText={handleOnSearch}/>
+        <AntDesign name="search1" size={12} color="black" />
+        <SearchBar
+          placeholder="Search by name"
+          value={searchValue}
+          onChangeText={handleOnSearch}
+        />
       </SearchContainer>
       <SpaceBar />
       <FlatList
-        data={props.devices}
+        data={!searchValue ? props.allDevices : props.devices}
         renderItem={({ item }) => (
           <DeviceCard item={item} updateDevice={props.updateDevice} />
         )}
@@ -70,6 +70,7 @@ const mapStateToProps: MapStateToProps<ConnectedProps, OwnProps> = (
 ) => {
   return {
     devices: state.client.devices,
+    allDevices: state.client.allDevices,
   };
 };
 
@@ -80,7 +81,8 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = (
   return {
     getDevices: () => dispatch(ClientActions.getDevices()),
     updateDevice: (lock: Device) => dispatch(ClientActions.updateDevice(lock)),
-    filterDeviceByName: (deviceName: string) => dispatch(ClientActions.filterDeviceByName(deviceName)),
+    filterDeviceByName: (deviceName: string) =>
+      dispatch(ClientActions.filterDeviceByName(deviceName)),
   };
 };
 

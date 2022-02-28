@@ -39,14 +39,15 @@ const reducer = (state: any = INITIAL_STATE, action: any) => {
                 ...state, isLoadingUsers: false, users: action.payload
             }
         case ClientTypes.UPDATE_DEVICE:
-            const currentDevices = state.devices.map((device: Device) => {
+            const allDevicesFiltered = state.allDevices.map((device: Device) => {
                 if (device.id === action.payload.id) {
                     return action.payload;
                 }
                 return device;
             })
+            const currentDeviceFiltered = allDevicesFiltered.filter(currentDevice => state.devices.some(stateDevice => stateDevice.attributes.name === currentDevice.attributes.name))
             return {
-                ...state, devices: currentDevices, allDevices: currentDevices
+                ...state, devices: currentDeviceFiltered, allDevices: allDevicesFiltered
             }
         case ClientTypes.FILTER_DEVICE_BY_NAME:
             return {
