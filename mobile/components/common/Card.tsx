@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
+import Colors from "../../styles/Colors";
+import Dimensions from "../../utils/Dimensions";
 
 interface Props {
   title: string;
@@ -35,12 +37,11 @@ const Container = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 300px;
+  width: ${Dimensions.CONTENT_WIDTH}px;
   height: 135px;
   align-items: center;
   padding: 1em;
   border-radius: 2px;
-  backgroundcolor: #ffff;
 `;
 
 const ImageContainer = styled.View`
@@ -48,7 +49,7 @@ const ImageContainer = styled.View`
 `;
 
 const Image = styled.Image`
-  background-color: #efefef;
+  background-color: ${Colors.placeholder};
   width: 6em;
   height: 6em;
   border-radius: 5em;
@@ -69,14 +70,14 @@ const Title = styled.Text`
 `;
 
 const SubTitle = styled.Text`
-  color: #ababae;
+  color: ${Colors.textSecondary};
   font-size: 0.85em;
 `;
 
 const Description = styled.Text`
   font-size: 0.9em;
   font-weight: 700;
-  color: #9b9b9e;
+  color: ${Colors.textTertiary};
 `;
 
 const Actions = styled.View`

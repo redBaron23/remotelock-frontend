@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Switch } from "react-native";
+import Colors from "../../styles/Colors";
 
 interface Props {
   onChange: (value: boolean) => void;
@@ -10,9 +11,9 @@ function CustomSwitch(props: Props) {
   const { onChange, isEnabled } = props;
   return (
       <Switch
-        trackColor={{ false: "#D2584F", true: "#4FD262" }}
-        thumbColor={"#FFFF"}
-        ios_backgroundColor="#FFFF"
+        trackColor={{ false: Colors.lightRed, true: Colors.lightGreen }}
+        thumbColor={Colors.white0}
+        ios_backgroundColor={Colors.white0}
         onValueChange={onChange}
         value={isEnabled}
       />
