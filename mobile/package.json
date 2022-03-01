@@ -5,22 +5,44 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest && npx cypress run"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testPathIgnorePatterns": ["cypress"]
   },
   "dependencies": {
+    "add": "^2.0.6",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
+    "moment-timezone": "^0.5.34",
+    "or": "^0.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-web": "~0.13.12"
+    "react-native-platform-searchbar": "^1.2.3",
+    "react-native-svg": "12.1.1",
+    "react-native-switch-selector": "^2.1.4",
+    "react-native-web": "~0.13.12",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
+    "styled-components": "^5.3.3",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/eslint-parser": "^7.15.0",
+    "@types/jest": "^27.4.1",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
     "babel-plugin-module-resolver": "^3.2.0",
+    "cypress": "^9.5.1",
     "eslint": "^7.32.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^27.5.1",
+    "typescript": "~4.0.0"
   },
   "private": true
 }
